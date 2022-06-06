@@ -21,7 +21,7 @@ export class UserController {
   getALL() {
     return this.userService.getAll();
   }
-
+  @HttpCode(HttpStatus.OK)
   @Get('/:id')
   getOneUser(@Param('id') id: string) {
     return this.userService.getOneById(id);
