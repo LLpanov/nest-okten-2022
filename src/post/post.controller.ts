@@ -11,6 +11,7 @@ import {
 } from '@nestjs/common';
 import { PostService } from './post.service';
 import { CreatePostDto } from './dto/create-post.dto';
+import { UpdatePostDto } from './dto/update-post.dto';
 
 @Controller('posts')
 export class PostController {
@@ -38,7 +39,7 @@ export class PostController {
   }
   @HttpCode(201)
   @Put('/:id')
-  updatePost(@Body() postDto: CreatePostDto, @Param('id') id: string) {
+  updatePost(@Body() postDto: UpdatePostDto, @Param('id') id: string) {
     return this.postService.updatePost(postDto, id);
   }
 }

@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { CreatePostDto } from './dto/create-post.dto';
+import { UpdatePostDto } from './dto/update-post.dto';
 
 @Injectable()
 export class PostService {
@@ -22,7 +23,7 @@ export class PostService {
     const index = this.posts.findIndex((post) => post.id === id);
     this.posts.splice(index, 1);
   }
-  updatePost(postDto: CreatePostDto, id: string) {
+  updatePost(postDto: UpdatePostDto, id: string) {
     const changePost = this.posts.find((post) => post.id === id);
     changePost === postDto;
     return postDto;
