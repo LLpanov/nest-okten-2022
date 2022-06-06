@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { CreateCatDto } from './dto/create-cat.dto';
-import {UpdateCatDto} from "./dto/update-cat.dto";
+import { UpdateCatDto } from './dto/update-cat.dto';
 
 @Injectable()
 export class CatService {
@@ -21,7 +21,9 @@ export class CatService {
     this.cats.splice(index, 1);
   }
   updateCat(catDto: UpdateCatDto, id: string) {
-    const changeCat = this.cats.find((cat) => cat.id === id);
-
+    const index = this.cats.findIndex((user) => user.id === id);
+    this.cats.splice(index, 1);
+    this.cats.push(catDto);
+    return catDto;
   }
 }

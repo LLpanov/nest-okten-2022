@@ -30,8 +30,9 @@ export class UserService {
     this.users.splice(index, 1);
   }
   updateUser(userDto: UpdateUserDto, id: string) {
-    const changeUser = this.users.find((user) => user.id === id);
-    changeUser === userDto;
+    const index = this.users.findIndex((user) => user.id === id);
+    this.users.splice(index, 1);
+    this.users.push(userDto);
     return userDto;
   }
 }

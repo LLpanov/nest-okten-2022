@@ -24,8 +24,9 @@ export class PostService {
     this.posts.splice(index, 1);
   }
   updatePost(postDto: UpdatePostDto, id: string) {
-    const changePost = this.posts.find((post) => post.id === id);
-    changePost === postDto;
+    const index = this.posts.findIndex((user) => user.id === id);
+    this.posts.splice(index, 1);
+    this.posts.push(postDto);
     return postDto;
   }
 }
