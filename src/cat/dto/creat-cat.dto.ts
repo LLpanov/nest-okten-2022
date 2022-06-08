@@ -4,4 +4,6 @@ export class CreateCatDto {
   public year: number;
   public chipcode: string;
   public vaccination: boolean;
+  public postId: number;
+  public CatOwnerId: number;
 }

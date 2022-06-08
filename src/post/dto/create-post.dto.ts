@@ -3,4 +3,5 @@ export class CreatePostDto {
   public company: string;
   public telephone: string;
   public zipcode: number;
+  public authorId: number;
 }

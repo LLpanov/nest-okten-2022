@@ -31,7 +31,7 @@ CREATE TABLE "Cat" (
     "year" INTEGER NOT NULL,
     "chipcode" TEXT NOT NULL,
     "vaccination" BOOLEAN DEFAULT false,
-    "ownerId" INTEGER,
+    "CatOwnerId" INTEGER,
     "postId" INTEGER,
 
     CONSTRAINT "Cat_pkey" PRIMARY KEY ("id")
@@ -58,7 +58,7 @@ CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
 ALTER TABLE "Post" ADD CONSTRAINT "Post_authorId_fkey" FOREIGN KEY ("authorId") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Cat" ADD CONSTRAINT "Cat_ownerId_fkey" FOREIGN KEY ("ownerId") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+ALTER TABLE "Cat" ADD CONSTRAINT "Cat_CatOwnerId_fkey" FOREIGN KEY ("CatOwnerId") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Cat" ADD CONSTRAINT "Cat_postId_fkey" FOREIGN KEY ("postId") REFERENCES "Post"("id") ON DELETE SET NULL ON UPDATE CASCADE;

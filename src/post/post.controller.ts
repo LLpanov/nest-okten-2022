@@ -21,7 +21,7 @@ export class PostController {
     return this.postService.getAll();
   }
   @HttpCode(HttpStatus.OK)
-  @Get('/:id')
+  @Get(':id')
   getOnePost(@Param('id') id: string) {
     return this.postService.getOneById(id);
   }
@@ -31,12 +31,12 @@ export class PostController {
     return this.postService.createPost(postDto);
   }
   @HttpCode(HttpStatus.OK)
-  @Put('/:id')
-  updatePost(@Body() postDto: UpdatePostDto, @Param('/:id') id: string) {
+  @Put(':id')
+  updatePost(@Body() postDto: UpdatePostDto, @Param('id') id: string) {
     return this.postService.updatePost(postDto, id);
   }
   @HttpCode(HttpStatus.NO_CONTENT)
-  @Delete('/:id')
+  @Delete(':id')
   deletePost(@Param('id') id: string) {
     return this.postService.deletePost(id);
   }

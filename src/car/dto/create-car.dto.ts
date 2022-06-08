@@ -4,4 +4,6 @@ export class CreateCarDto {
   public year: number;
   public price: number;
   public insurance: boolean;
+  public ownerId: number;
+  public catId: number;
 }

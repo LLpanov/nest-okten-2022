@@ -38,11 +38,11 @@ model Cat {
   year        Int
   chipcode    String
   vaccination Boolean? @default(false)
-  owner       User?    @relation(fields: [ownerId], references: [id])
-  ownerId     Int?
-  cars        Car[]
+  CatOwner    User?    @relation(fields: [CatOwnerId], references: [id])
+  CatOwnerId  Int?
   Post        Post?    @relation(fields: [postId], references: [id])
   postId      Int?
+  cars        Car[]
 }
 
 model Car {
