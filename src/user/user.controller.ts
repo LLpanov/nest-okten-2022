@@ -34,14 +34,14 @@ export class UserController {
     return this.userService.createUser(UserDto);
   }
 
-  @HttpCode(HttpStatus.NO_CONTENT)
-  @Delete('/:id')
-  deleteUser(@Param('id') id: string) {
-    return this.userService.deleteUser(id);
-  }
   @HttpCode(HttpStatus.OK)
   @Put('/:id')
   updateUser(@Body() userDto: UpdateUserDto, @Param('id') id: string) {
     return this.userService.updateUser(userDto, id);
+  }
+  @HttpCode(HttpStatus.NO_CONTENT)
+  @Delete('/:id')
+  deleteUser(@Param('id') id: string) {
+    return this.userService.deleteUser(id);
   }
 }
