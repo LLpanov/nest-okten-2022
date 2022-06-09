@@ -11,6 +11,7 @@ export class UserService {
   async getOneById(userId: string): Promise<User> {
     return this.prismaService.user.findUnique({
       where: { id: Number(userId) },
+      include: { posts: true, cats: true, cars: true },
     });
   }
   async createUser(data: Prisma.UserCreateInput): Promise<User> {

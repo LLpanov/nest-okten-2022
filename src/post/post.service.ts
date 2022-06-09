@@ -11,6 +11,7 @@ export class PostService {
   async getOneById(postId: string): Promise<Post> {
     return this.prismaService.post.findUnique({
       where: { id: Number(postId) },
+      include: { cats: true },
     });
   }
   async createPost(data: Prisma.PostCreateInput): Promise<Post> {

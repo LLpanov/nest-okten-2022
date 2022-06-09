@@ -9,7 +9,10 @@ export class CatService {
     return this.prismaService.cat.findMany();
   }
   async getOneById(catId: string): Promise<Cat> {
-    return this.prismaService.cat.findUnique({ where: { id: Number(catId) } });
+    return this.prismaService.cat.findUnique({
+      where: { id: Number(catId) },
+      include: { cars: true },
+    });
   }
   async createPost(data: Prisma.CatCreateInput): Promise<Cat> {
     return this.prismaService.cat.create({ data });
