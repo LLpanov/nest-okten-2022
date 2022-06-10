@@ -14,7 +14,10 @@ export class UserService {
       include: { posts: true, cats: true, cars: true },
     });
   }
-  async createUser(data: Prisma.UserCreateInput): Promise<User> {
+  async getUserByEmail(userEmail: string): Promise<User> {
+    return this.prismaService.user.findFirst({ where: { email: userEmail } });
+  }
+  async createUser(data: Prisma.UserCreateInput,): Promise<User> {
     return this.prismaService.user.create({ data });
   }
   async updateUser(

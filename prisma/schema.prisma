@@ -15,6 +15,7 @@ model User {
   surname    String
   city       String
   profession String
+  password   String
   posts      Post[]
   cars       Car[]
   cats       Cat[]
