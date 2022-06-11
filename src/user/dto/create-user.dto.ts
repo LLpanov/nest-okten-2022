@@ -42,6 +42,7 @@ export class CreateUserDto {
   @ApiProperty({ required: false })
   @IsString()
   public profession: string;
+
   @IsString()
   @IsNotEmpty()
   readonly password: string;

@@ -14,8 +14,6 @@ export class CreatePostDto {
   public telephone: string;
   @ApiProperty({ example: 79012, description: 'min 4 max 16 value' })
   @IsNumber()
-  @Min(4)
-  @Max(16)
   public zipcode: number;
   public authorId: number;
 }

@@ -16,5 +16,5 @@ export class AuthUserDto {
   @Matches(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/, {
     message: '8 symbol at least one letter and one number',
   })
-  password: string;
+  public password: string;
 }
