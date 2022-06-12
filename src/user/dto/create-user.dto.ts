@@ -4,6 +4,7 @@ import {
   IsNumber,
   IsString,
   Length,
+  Matches,
   Max,
   Min,
 } from 'class-validator';
@@ -45,5 +46,8 @@ export class CreateUserDto {
 
   @IsString()
   @IsNotEmpty()
+  @Matches(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/, {
+    message: '8 symbol at least one letter and one number',
+  })
   readonly password: string;
 }

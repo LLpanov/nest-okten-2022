@@ -8,15 +8,18 @@ import {
   Param,
   Post,
   Put,
+  UseGuards,
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto, UpdateUserDto } from './dto';
 import { ApiBody, ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
+import { AuthGuard } from '../guards';
 
 @ApiTags('Users')
 @Controller('users')
 export class UserController {
   constructor(private readonly userService: UserService) {}
+
   @ApiOperation({ summary: 'Get all users' })
   @ApiOkResponse({
     status: 200,
@@ -44,7 +47,9 @@ export class UserController {
     },
   })
   @HttpCode(HttpStatus.OK)
-  @Get()
+  @UseGuards(AuthGuard)
+  @Get('/')
+  @UseGuards(AuthGuard)
   getALL() {
     return this.userService.getAll();
   }
@@ -61,6 +66,7 @@ export class UserController {
         age: 18,
         city: 'London',
         profession: 'Wizard',
+        password: '123qwertA',
       },
     },
   })
@@ -69,6 +75,7 @@ export class UserController {
   getOneUser(@Param('id') id: string) {
     return this.userService.getOneById(id);
   }
+
   @ApiOperation({ summary: 'Create one user' })
   @ApiBody({ type: CreateUserDto })
   @HttpCode(HttpStatus.CREATED)
@@ -76,6 +83,7 @@ export class UserController {
   createUser(@Body() UserDto: CreateUserDto) {
     return this.userService.createUser(UserDto);
   }
+
   @ApiOperation({ summary: 'update user by id' })
   @ApiBody({ type: UpdateUserDto })
   @HttpCode(HttpStatus.OK)
@@ -83,6 +91,7 @@ export class UserController {
   updateUser(@Body() userDto: UpdateUserDto, @Param('id') id: string) {
     return this.userService.updateUser(userDto, id);
   }
+
   @ApiOperation({ summary: 'delete user by id' })
   @HttpCode(HttpStatus.NO_CONTENT)
   @Delete(':id')
