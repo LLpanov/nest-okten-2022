@@ -16,4 +16,7 @@ export class UpdateUserDto {
   @IsString()
   @Length(3, 10)
   public city: string;
+  @ApiProperty({ example: 'blablabla.jpg', description: 'the user image' })
+  @IsString()
+  public avatar: string;
 }

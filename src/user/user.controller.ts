@@ -8,12 +8,17 @@ import {
   Param,
   Post,
   Put,
+  UploadedFile,
   UseGuards,
+  UseInterceptors,
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto, UpdateUserDto } from './dto';
 import { ApiBody, ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { AuthGuard } from '../guards';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { diskStorage } from 'multer';
+import { imageFileFilter } from '../utils';
 
 @ApiTags('Users')
 @Controller('users')
@@ -88,7 +93,43 @@ export class UserController {
   @ApiBody({ type: UpdateUserDto })
   @HttpCode(HttpStatus.OK)
   @Put(':id')
-  updateUser(@Body() userDto: UpdateUserDto, @Param('id') id: string) {
+  @UseInterceptors(
+    FileInterceptor('avatar', {
+      storage: diskStorage({
+        destination: './avatar',
+        filename: (req, file, callback) => {
+          const randomName = Array(32)
+            .fill(null)
+            .map(() => Math.round(Math.random() * 16).toString(16))
+            .join('');
+          return callback(
+            null,
+            `${randomName}${file.originalname}${file.size}`,
+          );
+        },
+      }),
+      fileFilter: imageFileFilter,
+    }),
+  )
+  updateUser(
+    @Body() userDto: UpdateUserDto,
+    @Param('id') id: string,
+    @UploadedFile() avatar: Express.Multer.File,
+  ) {
+    let newAvatarPath: string = null;
+    try {
+      if (avatar) {
+        const randomName = Array(32)
+          .fill(null)
+          .map(() => Math.round(Math.random() * 16).toString(16))
+          .join('');
+
+        newAvatarPath = `avatar/${randomName}${avatar.originalname}${avatar.size}`;
+      }
+      userDto.avatar = newAvatarPath;
+    } catch (e) {
+      console.log(e);
+    }
     return this.userService.updateUser(userDto, id);
   }
 
