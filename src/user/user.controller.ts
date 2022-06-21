@@ -124,13 +124,13 @@ export class UserController {
           .map(() => Math.round(Math.random() * 16).toString(16))
           .join('');
 
-        newAvatarPath = `avatar/${randomName}${avatar.originalname}${avatar.size}`;
+        newAvatarPath = `avatar/${randomName}${avatar.originalname}`;
       }
       userDto.avatar = newAvatarPath;
+      return this.userService.updateUser(userDto, id);
     } catch (e) {
       console.log(e);
     }
-    return this.userService.updateUser(userDto, id);
   }
 
   @ApiOperation({ summary: 'delete user by id' })

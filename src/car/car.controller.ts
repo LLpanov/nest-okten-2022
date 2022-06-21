@@ -17,6 +17,7 @@ import { ApiBody, ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 @Controller('cars')
 export class CarController {
   constructor(private carService: CarService) {}
+
   @ApiOperation({ summary: 'Get all cars' })
   @ApiOkResponse({
     status: 200,
@@ -50,6 +51,7 @@ export class CarController {
   getAll() {
     return this.carService.getAll();
   }
+
   @ApiOperation({ summary: 'Get by one car' })
   @ApiOkResponse({
     status: 200,
@@ -71,6 +73,7 @@ export class CarController {
   getOneCar(@Param('id') id: string) {
     return this.carService.getOneById(id);
   }
+
   @ApiOperation({ summary: 'Create by one car' })
   @ApiBody({ type: CreateCarDto })
   @HttpCode(HttpStatus.CREATED)
@@ -78,6 +81,7 @@ export class CarController {
   createCar(@Body() carDto: CreateCarDto) {
     return this.carService.createCar(carDto);
   }
+
   @ApiOperation({ summary: 'update car by id' })
   @ApiBody({ type: UpdateCarDto })
   @HttpCode(HttpStatus.OK)
@@ -85,6 +89,7 @@ export class CarController {
   updateCar(@Body() carDto: UpdateCarDto, @Param('id') id: string) {
     return this.carService.updateCar(carDto, id);
   }
+
   @ApiOperation({ summary: 'delete car by id' })
   @HttpCode(HttpStatus.NO_CONTENT)
   @Delete('/:id')

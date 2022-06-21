@@ -8,6 +8,7 @@ import { CreateUserDto } from '../user/dto';
 @Controller('auth')
 export class AuthController {
   constructor(private authService: AuthService) {}
+
   @ApiOperation({ summary: 'get  users token  and log in ' })
   @ApiOkResponse({
     status: 201,
@@ -25,6 +26,7 @@ export class AuthController {
   loginUser(@Body() authDto: AuthUserDto) {
     return this.authService.login(authDto);
   }
+
   @HttpCode(HttpStatus.CREATED)
   @ApiOperation({ summary: 'registration user' })
   @ApiBody({ type: CreateUserDto })

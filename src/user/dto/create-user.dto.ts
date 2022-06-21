@@ -2,6 +2,7 @@ import {
   IsEmail,
   IsNotEmpty,
   IsNumber,
+  IsOptional,
   IsString,
   Length,
   Matches,
@@ -50,4 +51,9 @@ export class CreateUserDto {
     message: '8 symbol at least one letter and one number',
   })
   readonly password: string;
+  @IsOptional()
+  @ApiProperty({ example: 'blablabla.jpg', description: 'the user image' })
+  @IsString()
+  @IsOptional()
+  public avatar: string;
 }

@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Get, Injectable, Param, Res } from '@nestjs/common';
 import { Prisma, User } from '@prisma/client';
 import { PrismaService } from '../core/prisma.service';
 
@@ -26,10 +26,19 @@ export class UserService {
   ): Promise<User> {
     return this.prismaService.user.update({
       where: { id: Number(userId) },
-      data: { age: data.age, city: data.city, profession: data.profession },
+      data: {
+        age: data.age,
+        city: data.city,
+        profession: data.profession,
+        avatar: data.avatar,
+      },
     });
   }
   async deleteUser(userId: string): Promise<User> {
     return this.prismaService.user.delete({ where: { id: Number(userId) } });
+  }
+  @Get('avatar/:imagePath')
+  watchFile(@Param('image') image, @Res() res) {
+    return res.sendFile(image, { root: './avatar' });
   }
 }

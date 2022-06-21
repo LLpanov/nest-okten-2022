@@ -17,6 +17,7 @@ import { ApiBody, ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 @Controller('cats')
 export class CatController {
   constructor(private catService: CatService) {}
+
   @ApiOperation({ summary: 'Get all cats' })
   @ApiOkResponse({
     status: 200,
@@ -50,6 +51,7 @@ export class CatController {
   getAll() {
     return this.catService.getAll();
   }
+
   @ApiOperation({ summary: 'Get by one cat' })
   @ApiOkResponse({
     status: 200,
@@ -71,6 +73,7 @@ export class CatController {
   getOneCat(@Param('id') id: string) {
     return this.catService.getOneById(id);
   }
+
   @ApiOperation({ summary: 'Create by one cat' })
   @ApiBody({ type: CreateCatDto })
   @HttpCode(HttpStatus.CREATED)
@@ -78,6 +81,7 @@ export class CatController {
   createCat(@Body() catDto: CreateCatDto) {
     return this.catService.createPost(catDto);
   }
+
   @ApiOperation({ summary: 'update cat by id' })
   @ApiBody({ type: UpdateCatDto })
   @HttpCode(HttpStatus.OK)
@@ -85,6 +89,7 @@ export class CatController {
   updateCat(@Body() catDto: UpdateCatDto, @Param('id') id: string) {
     return this.catService.updateCat(catDto, id);
   }
+
   @ApiOperation({ summary: 'delete cat by id' })
   @HttpCode(HttpStatus.NO_CONTENT)
   @Delete()

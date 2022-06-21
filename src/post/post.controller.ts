@@ -17,6 +17,7 @@ import { ApiBody, ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 @Controller('posts')
 export class PostController {
   constructor(private postService: PostService) {}
+
   @ApiOperation({ summary: 'Get all posts' })
   @ApiOkResponse({
     status: 200,
@@ -46,6 +47,7 @@ export class PostController {
   getAll() {
     return this.postService.getAll();
   }
+
   @ApiOperation({ summary: 'Get by one post' })
   @ApiOkResponse({
     status: 200,
@@ -65,6 +67,7 @@ export class PostController {
   getOnePost(@Param('id') id: string) {
     return this.postService.getOneById(id);
   }
+
   @ApiOperation({ summary: 'Create by one post' })
   @ApiBody({ type: CreatePostDto })
   @HttpCode(HttpStatus.CREATED)
@@ -72,6 +75,7 @@ export class PostController {
   createPost(@Body() postDto: CreatePostDto) {
     return this.postService.createPost(postDto);
   }
+
   @ApiOperation({ summary: 'update post by id' })
   @ApiBody({ type: UpdatePostDto })
   @HttpCode(HttpStatus.OK)
@@ -79,6 +83,7 @@ export class PostController {
   updatePost(@Body() postDto: UpdatePostDto, @Param('id') id: string) {
     return this.postService.updatePost(postDto, id);
   }
+
   @ApiOperation({ summary: 'delete post by id' })
   @HttpCode(HttpStatus.NO_CONTENT)
   @Delete(':id')
