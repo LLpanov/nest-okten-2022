@@ -8,6 +8,7 @@ import {
   Param,
   Post,
   Put,
+  Res,
   UploadedFile,
   UseGuards,
   UseInterceptors,
@@ -131,6 +132,10 @@ export class UserController {
     } catch (e) {
       console.log(e);
     }
+  }
+  @Get('avatar/:image-path')
+  watchFile(@Param('image-path') image, @Res() res) {
+    return res.sendFile(image, { root: './avatar' });
   }
 
   @ApiOperation({ summary: 'delete user by id' })

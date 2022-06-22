@@ -13,6 +13,7 @@ export class CreateCatDto {
   @Length(2, 10)
   @IsNotEmpty()
   public name: string;
+
   @ApiProperty({ example: 'Scottish', description: 'min 2 max 10 letters' })
   @IsString()
   @Length(2, 10)
@@ -21,9 +22,11 @@ export class CreateCatDto {
   @ApiProperty({ required: false })
   @IsNumber()
   public year: number;
+
   @ApiProperty({ required: false })
   @IsString()
   public chipcode: string;
+
   @ApiProperty({ required: false })
   @IsBoolean()
   public vaccination: boolean;

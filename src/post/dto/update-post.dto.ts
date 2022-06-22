@@ -6,6 +6,7 @@ export class UpdatePostDto {
   @IsString()
   @IsNotEmpty()
   public comment: string;
+
   @ApiProperty({ required: false })
   @IsString()
   public company: string;

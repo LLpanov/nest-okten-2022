@@ -5,6 +5,7 @@ export class UpdateCarDto {
   @ApiProperty({ required: false })
   @IsNumber()
   public price: number;
+
   @ApiProperty({ required: false })
   @IsBoolean()
   public insurance: boolean;
