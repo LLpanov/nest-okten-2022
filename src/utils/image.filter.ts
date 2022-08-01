@@ -9,8 +9,11 @@ export const imageFileFilter = (req, file, callback) => {
       ),
       false,
     );
-    if (file.size > 1) throw new Error('File is too big');
-    console.log(Error);
   }
   callback(null, true);
 };
+// if (file.size > 1)
+//   return callback(
+//       new HttpException('File is too big!', HttpStatus.BAD_REQUEST),
+//       false,
+//   );

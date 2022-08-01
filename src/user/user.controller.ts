@@ -103,10 +103,7 @@ export class UserController {
             .fill(null)
             .map(() => Math.round(Math.random() * 16).toString(16))
             .join('');
-          return callback(
-            null,
-            `${randomName}${file.originalname}${file.size}`,
-          );
+          return callback(null, `${randomName}${file.originalname}`);
         },
       }),
       fileFilter: imageFileFilter,
@@ -133,8 +130,8 @@ export class UserController {
       console.log(e);
     }
   }
-  @Get('avatar/:image-path')
-  watchFile(@Param('image-path') image, @Res() res) {
+  @Get('avatar/:image')
+  watchFile(@Param('image') image, @Res() res) {
     return res.sendFile(image, { root: './avatar' });
   }
 
