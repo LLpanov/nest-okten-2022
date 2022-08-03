@@ -50,4 +50,17 @@ export class AuthService {
     }
     throw new UnauthorizedException({ message: 'wrong email or password' });
   }
+
+  async getVerifiedUserId(jwt: string): Promise<string | null> {
+    try {
+      const token = this.getTokenFromJwt(jwt);
+      const user = this.jwtService.verify(token, { secret: 'Secret' });
+      return user.id;
+    } catch (e) {
+      throw new UnauthorizedException(HttpStatus.UNAUTHORIZED);
+    }
+  }
+  private getTokenFromJwt(jwt: string) {
+    return jwt.split(' ')[1];
+  }
 }
