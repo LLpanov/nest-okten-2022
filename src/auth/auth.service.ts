@@ -54,7 +54,7 @@ export class AuthService {
   async getVerifiedUserId(jwt: string): Promise<string | null> {
     try {
       const token = this.getTokenFromJwt(jwt);
-      const user = this.jwtService.verify(token, { secret: 'Secret' });
+      const user = await this.jwtService.verify(token, { secret: 'Secret' });
       return user.id;
     } catch (e) {
       throw new UnauthorizedException(HttpStatus.UNAUTHORIZED);
